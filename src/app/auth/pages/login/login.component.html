@@ -1,1 +1,30 @@
-<p class="underline">login works!</p>
+<section class="h-full flex justify-center items-center">
+  <div class="w-full h-full flex flex-col justify-start items-center md:w-1/2 md:h-1/2 md:border-2 md:rounded-md">
+    <h3 class="!my-4 !font-bold uppercase tracking-wider md:tracking-wide md:!my-2">Login</h3>
+
+    <form aria-labelledby="login-form" [formGroup]="loginForm" class="w-full h-full flex flex-col items-center my-3">
+      <mat-form-field appearance="outline" class="field-login">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" />
+        <mat-error>{{ getErrorMessage('email') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field-login">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" />
+        <mat-error>{{ getErrorMessage('password') }}</mat-error>
+      </mat-form-field>
+
+      <div id="sign-up-button-container" class="flex justify-end">
+        <a routerLink="../register">Sign up</a>
+      </div>
+
+      <button type="submit" mat-raised-button color="primary" id="button-submit-login" class="uppercase mt-auto">
+        <div class="flex items-center gap-3">
+          <span style="line-height: 19px">Sign in</span>
+          <mat-spinner [diameter]="15" *ngIf="isLoading"></mat-spinner>
+        </div>
+      </button>
+    </form>
+  </div>
+</section>

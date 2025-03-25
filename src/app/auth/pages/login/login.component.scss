@@ -1,0 +1,29 @@
+@import './../../../../assets/variables.scss';
+
+form {
+  .field-login,
+  #button-submit-login,
+  #sign-up-button-container {
+    width: 90%;
+  }
+
+  .field-login {
+    margin-bottom: 10px;
+  }
+
+  #sign-up-button-container {
+    transform: translateY(-10px);
+
+    a:hover {
+      color: #3498db;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-mdc-progress-spinner circle {
+    stroke: #ffffff !important;
+  }
+}
