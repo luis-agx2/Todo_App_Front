@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UTIL_ERRORS_FN } from '../../data/error-messages.data';
+import { UTIL_ERRORS_FN } from '../../../shared/data/error-messages.data';
 
 @Component({
   selector: 'app-login',

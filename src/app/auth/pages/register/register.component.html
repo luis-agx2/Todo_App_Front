@@ -1,1 +1,70 @@
-<p>register works!</p>
+<section class="h-full flex justify-center items-center">
+  <div class="w-full flex flex-col justify-start items-center md:w-1/2 md:border-2 md:rounded-md">
+    <h3 class="!my-4 !font-bold uppercase tracking-wider md:tracking-wide md:!my-2">Register</h3>
+
+    <form
+      aria-labelledby="register-form"
+      [formGroup]="registerForm"
+      class="w-full h-full flex flex-col items-center my-3"
+    >
+      <mat-form-field appearance="outline" class="field-register">
+        <mat-label>Nickname</mat-label>
+        <input type="text" matInput formControlName="nickname" />
+        <mat-error>{{ getErrorMessage('nickname') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field-register">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" />
+        <mat-error>{{ getErrorMessage('email') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field-register">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" />
+        <mat-error>{{ getErrorMessage('password') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field-register">
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput formControlName="confirm_password" />
+        <mat-error>{{ getErrorMessage('confirm_password') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field-register">
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput formControlName="first_name" />
+        <mat-error>{{ getErrorMessage('first_name') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field-register">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="roles" multiple>
+          <mat-select-trigger>
+            {{ registerForm.get('roles')?.value?.[0] || '' }}
+            <span *ngIf="(registerForm.get('roles')?.value?.length || 0) > 1" class="example-additional-selection">
+              (+{{ (registerForm.get('roles')?.value?.length || 0) - 1 }}
+              {{ registerForm.get('roles')?.value?.length === 2 ? 'other' : 'others' }})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let topping of [1, 2, 3]" [value]="topping">{{ topping }}</mat-option>
+        </mat-select>
+        <mat-error>{{ getErrorMessage('first_name') }}</mat-error>
+      </mat-form-field>
+
+      <p id="terms-and-conditions-container">
+        <mat-checkbox formControlName="terms">I accept terms and conditions</mat-checkbox>
+        <mat-error *ngIf="registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched">
+          You must accept terms and conditions
+        </mat-error>
+      </p>
+
+      <button type="submit" mat-raised-button color="primary" id="button-submit-register" class="uppercase mt-auto">
+        <div class="flex items-center gap-3">
+          <span style="line-height: 19px">Register</span>
+          <mat-spinner [diameter]="15" *ngIf="isLoading"></mat-spinner>
+        </div>
+      </button>
+    </form>
+  </div>
+</section>

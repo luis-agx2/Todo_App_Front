@@ -1,0 +1,30 @@
+form {
+  .field-register,
+  #button-submit-register,
+  #sign-up-button-container,
+  #terms-and-conditions-container {
+    width: 90%;
+  }
+
+  .field-register {
+    margin-bottom: 10px;
+  }
+}
+
+::ng-deep {
+  .mat-mdc-progress-spinner circle {
+    stroke: #ffffff !important;
+  }
+
+  #terms-and-conditions-container {
+    .mdc-form-field .mdc-label {
+      color: #414141 !important;
+    }
+
+    .mat-mdc-form-field-error {
+      margin-left: 20px;
+      margin-top: -10px;
+      font-size: 12px;
+    }
+  }
+}

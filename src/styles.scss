@@ -56,5 +56,12 @@ body {
     }
   }
 }
-
 // ------------------------------- Form field -------------------------------
+
+// -------------------------------  Mat Error  ------------------------------
+.mat-mdc-form-field-error.mat-mdc-form-field-bottom-align {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+// -------------------------------  Mat Error  ------------------------------

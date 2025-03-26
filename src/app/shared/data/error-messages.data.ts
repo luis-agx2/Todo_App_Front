@@ -2,14 +2,11 @@
 type ErrorMessages = Record<string, (param?: any) => string>;
 type Error = Record<string, unknown>;
 
-export const UTIL_ERRORS_FN = (errorKey: string, errorValue: Error): string => {
-  if (errorKey) {
-    const param = errorValue?.[`requiredLength`] ?? errorValue?.[`min`] ?? errorValue?.[`max`];
+export const UTIL_ERRORS_FN = (errorKey: string, errorValue: Error, errorMessages?: ErrorMessages): string => {
+  const param = errorValue?.[`requiredLength`] ?? errorValue?.[`min`] ?? errorValue?.[`max`];
+  const errorMessageFn = ERROR_MESSAGES?.[errorKey] ?? errorMessages?.[errorKey];
 
-    return ERROR_MESSAGES[errorKey](param);
-  }
-
-  return '';
+  return errorMessageFn ? errorMessageFn(param) : '';
 };
 
 export const ERROR_MESSAGES: ErrorMessages = {
