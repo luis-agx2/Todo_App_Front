@@ -1,0 +1,21 @@
+@import './../../assets/variables.scss';
+
+#auth-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  #img-background {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    object-fit: fill;
+    z-index: -9999;
+
+    @include media-up(sm) {
+      object-fit: cover;
+    }
+  }
+}
