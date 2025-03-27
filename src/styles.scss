@@ -65,3 +65,19 @@ body {
   text-overflow: ellipsis;
 }
 // -------------------------------  Mat Error  ------------------------------
+
+// -------------------------------  SnackBar   ------------------------------
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: transparent !important;
+}
+
+.mat-snack-bar-error {
+  background-color: #f44336 !important;
+  font-weight: 600;
+}
+
+.mat-snack-bar-success {
+  background-color: #64dd17 !important;
+  font-weight: 600;
+}
+// -------------------------------  SnackBar   ------------------------------

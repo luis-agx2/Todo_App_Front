@@ -6,6 +6,7 @@
       aria-labelledby="register-form"
       [formGroup]="registerForm"
       class="w-full h-full flex flex-col items-center my-3"
+      (ngSubmit)="submitRegister()"
     >
       <mat-form-field appearance="outline" class="field-register">
         <mat-label>Nickname</mat-label>
@@ -41,13 +42,13 @@
         <mat-label>Role</mat-label>
         <mat-select formControlName="roles" multiple>
           <mat-select-trigger>
-            {{ registerForm.get('roles')?.value?.[0] || '' }}
+            {{ registerForm.get('roles')?.value?.[0]?.name || '' }}
             <span *ngIf="(registerForm.get('roles')?.value?.length || 0) > 1" class="example-additional-selection">
               (+{{ (registerForm.get('roles')?.value?.length || 0) - 1 }}
               {{ registerForm.get('roles')?.value?.length === 2 ? 'other' : 'others' }})
             </span>
           </mat-select-trigger>
-          <mat-option *ngFor="let topping of [1, 2, 3]" [value]="topping">{{ topping }}</mat-option>
+          <mat-option *ngFor="let role of roles$ | async" [value]="role">{{ role.name }}</mat-option>
         </mat-select>
         <mat-error>{{ getErrorMessage('first_name') }}</mat-error>
       </mat-form-field>
@@ -62,7 +63,7 @@
       <button type="submit" mat-raised-button color="primary" id="button-submit-register" class="uppercase mt-auto">
         <div class="flex items-center gap-3">
           <span style="line-height: 19px">Register</span>
-          <mat-spinner [diameter]="15" *ngIf="isLoading"></mat-spinner>
+          <mat-spinner [diameter]="15" *ngIf="spinnerStatus | async"></mat-spinner>
         </div>
       </button>
     </form>

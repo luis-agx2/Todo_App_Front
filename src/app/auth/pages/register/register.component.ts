@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { UTIL_ERRORS_FN } from '../../../shared/data/error-messages.data';
+import { RoleResponse } from '../../../shared/interfaces/role.interface';
 import { CustomValidatorsService } from '../../../shared/services/custom-validators/custom-validators.service';
+import { RolesService } from '../../../shared/services/roles/roles.service';
+import { UtilsService } from '../../../shared/services/utils/utils.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -19,14 +25,21 @@ export class RegisterComponent {
     no_match_passwords: () => `Passwords must match`
   };
 
-  isLoading: boolean;
+  spinnerStatus: Observable<boolean>;
   registerForm: FormGroup;
+
+  roles$: Observable<RoleResponse[]>;
 
   constructor(
     private fb: FormBuilder,
-    private validatorsService: CustomValidatorsService
+    private validatorsService: CustomValidatorsService,
+    private rolesService: RolesService,
+    private authService: AuthService,
+    private utilService: UtilsService,
+    private router: Router
   ) {
-    this.isLoading = false;
+    this.spinnerStatus = this.utilService.spinnerLoading();
+    this.roles$ = this.getRolesCat();
 
     this.registerForm = this.fb.group(
       {
@@ -54,10 +67,35 @@ export class RegisterComponent {
     );
   }
 
+  submitRegister(): void {
+    this.utilService.openBasicSnackBar('User was registered successfully', {
+      panelClass: 'mat-snack-bar-success',
+      duration: 100000
+    });
+
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
+
+    const { email, password, nickname, roles, first_name: firstName } = this.registerForm.getRawValue();
+    const rolesId = roles.map((role: RoleResponse) => role.id);
+    this.authService.register({ email, password, nickname, roles: rolesId, firstName }).subscribe({
+      next: () => {
+        this.utilService.openBasicSnackBar('User was registered successfully', { panelClass: 'mat-snack-bar-success' });
+        this.router.navigate(['auth/login']);
+      }
+    });
+  }
+
   public getErrorMessage(controlName: string): string {
     const errorKey = Object.keys(this.registerForm.controls[controlName]?.errors || {})[0];
     const errorValue = Object.values(this.registerForm.controls[controlName]?.errors || {})[0];
 
     return this.errorFn(errorKey, errorValue, this.customErrorMessages);
+  }
+
+  private getRolesCat(): Observable<RoleResponse[]> {
+    return this.rolesService.getRolesCat();
   }
 }
