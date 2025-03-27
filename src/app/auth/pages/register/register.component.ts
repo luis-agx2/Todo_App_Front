@@ -68,11 +68,6 @@ export class RegisterComponent {
   }
 
   submitRegister(): void {
-    this.utilService.openBasicSnackBar('User was registered successfully', {
-      panelClass: 'mat-snack-bar-success',
-      duration: 100000
-    });
-
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
