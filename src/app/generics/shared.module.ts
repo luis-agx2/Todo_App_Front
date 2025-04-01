@@ -8,4 +8,4 @@ import { SwitcherThemeComponent } from './components/switcher-theme/switcher-the
   imports: [CommonModule, MaterialModule],
   exports: [SwitcherThemeComponent]
 })
-export class SharedModule {}
+export class GenericsModule {}

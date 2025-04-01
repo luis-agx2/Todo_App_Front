@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { UTIL_ERRORS_FN } from '../../../shared/data/error-messages.data';
-import { UtilsService } from '../../../shared/services/utils/utils.service';
+import { UTIL_ERRORS_FN } from '../../../generics/data/error-messages.data';
+import { UtilsService } from '../../../generics/services/utils/utils.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
