@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { take } from 'rxjs';
-import { THEME_OPTIONS } from '../shared/interfaces/theme.interface';
-import { UtilsService } from '../shared/services/utils/utils.service';
+import { THEME_OPTIONS } from '../generics/interfaces/theme.interface';
+import { UtilsService } from '../generics/services/utils/utils.service';
 
 @Component({
   selector: 'app-auth',

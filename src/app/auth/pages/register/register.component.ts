@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UTIL_ERRORS_FN } from '../../../shared/data/error-messages.data';
-import { RoleResponse } from '../../../shared/interfaces/role.interface';
-import { CustomValidatorsService } from '../../../shared/services/custom-validators/custom-validators.service';
-import { RolesService } from '../../../shared/services/roles/roles.service';
-import { UtilsService } from '../../../shared/services/utils/utils.service';
+import { UTIL_ERRORS_FN } from '../../../generics/data/error-messages.data';
+import { RoleResponse } from '../../../generics/interfaces/role.interface';
+import { CustomValidatorsService } from '../../../generics/services/custom-validators/custom-validators.service';
+import { RolesService } from '../../../generics/services/roles/roles.service';
+import { UtilsService } from '../../../generics/services/utils/utils.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
