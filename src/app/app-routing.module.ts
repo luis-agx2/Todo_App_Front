@@ -13,6 +13,10 @@ const routes: Route[] = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
   },
   {
+    path: '',
+    loadChildren: () => import('./todo/todo.module').then((m) => m.TodoModule)
+  },
+  {
     path: '**',
     redirectTo: 'welcome'
   }

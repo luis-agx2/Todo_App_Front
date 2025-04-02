@@ -38,8 +38,8 @@ export class SwitcherThemeComponent implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes[`width`]) {
       const width = changes[`width`].currentValue;
-      document.documentElement.style.setProperty('--width', `${width}px`);
-      document.documentElement.style.setProperty('--height', `(${(width + width + 1) / 2})px`);
+      this.switchElement.nativeElement.style.setProperty('--width', `${width}px`);
+      this.switchElement.nativeElement.style.setProperty('--height', `${(width + 2) / 2}px`);
     }
   }
 
