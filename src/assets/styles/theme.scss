@@ -64,7 +64,7 @@ $my-light-theme: mat.define-light-theme(
 // --------------------------   DARK MODE CLASS   ---------------------------
 .dark-mode {
   @include mat.all-component-colors($my-dark-theme);
-  background-color: mat.get-color-from-palette($my-primary-dark, 900);
+  background-color: #616161;
   color: white;
 }
 // --------------------------   DARK MODE CLASS   ---------------------------
