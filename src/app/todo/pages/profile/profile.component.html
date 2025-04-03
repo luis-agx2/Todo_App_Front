@@ -1,0 +1,78 @@
+<app-title-bar
+  [title]="'My  Profile'"
+  (back)="goBack()"
+  [showIconAction]="!editMode"
+  [icon]="'edit'"
+  (action)="edit()"
+  [position]="'sticky'"
+></app-title-bar>
+
+<section id="container-profile" class="flex justify-center mt-5">
+  <ng-container [ngTemplateOutlet]="view" *ngIf="!editMode"></ng-container>
+
+  <ng-container [ngTemplateOutlet]="form" *ngIf="editMode"></ng-container>
+</section>
+
+<ng-template #view>
+  <section class="w-full">
+    <app-outline-field-viewer [label]="'Nickname'" [value]="profile?.user?.nickname"></app-outline-field-viewer>
+
+    <app-outline-field-viewer [label]="'Email'" [value]="profile?.user?.email"></app-outline-field-viewer>
+
+    <app-outline-field-viewer [label]="'First name'" [value]="profile?.firstName"></app-outline-field-viewer>
+
+    <app-outline-field-viewer [label]="'Last name'" [value]="profile?.lastName"></app-outline-field-viewer>
+
+    <app-outline-field-viewer [label]="'Age'" [value]="profile?.age"></app-outline-field-viewer>
+  </section>
+</ng-template>
+
+<ng-template #form>
+  <form
+    aria-labelledby="register-form"
+    [formGroup]="profileForm"
+    class="w-full h-full flex flex-col items-center my-3"
+    (ngSubmit)="submitProfile()"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Nickname</mat-label>
+      <input type="text" matInput formControlName="nickname" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input type="text" matInput formControlName="first_name" />
+      <mat-error>{{ getErrorMessage('first_name') }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input type="text" matInput formControlName="last_name" />
+      <mat-error>{{ getErrorMessage('last_name') }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Age</mat-label>
+      <input type="number" matInput formControlName="age" />
+      <mat-error>{{ getErrorMessage('age') }}</mat-error>
+    </mat-form-field>
+
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      class="w-full uppercase mt-auto md:w-1/5 md:self-end"
+      style="min-height: 40px"
+    >
+      <div class="flex items-center gap-3">
+        <span style="line-height: 19px">Update</span>
+        <mat-spinner [diameter]="15" *ngIf="spinnerStatus | async"></mat-spinner>
+      </div>
+    </button>
+  </form>
+</ng-template>

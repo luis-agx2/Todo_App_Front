@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { noAddToken } from '../../generics/interceptors/token/context-jwt-interceptor';
 import { LoginRequest, LoginResponse } from '../interfaces/login.interface';
 import { RegisterRequest } from '../interfaces/register.interface';
 
@@ -21,7 +22,7 @@ export class AuthService {
   login(request: LoginRequest): Observable<LoginResponse> {
     const url = `${this.baseUrl}/${environment.auth.login}`;
 
-    return this.http.post<LoginResponse>(url, request).pipe(
+    return this.http.post<LoginResponse>(url, request, { context: noAddToken() }).pipe(
       tap((response) => {
         localStorage.setItem('token', response.jwt);
       })
@@ -31,7 +32,7 @@ export class AuthService {
   register(request: RegisterRequest): Observable<void> {
     const url = `${this.baseUrl}/${environment.auth.register}`;
 
-    return this.http.post<void>(url, request);
+    return this.http.post<void>(url, request, { context: noAddToken() });
   }
 
   get token(): string | null {

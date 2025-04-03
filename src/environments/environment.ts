@@ -8,5 +8,12 @@ export const environment = {
   },
   roles: {
     baseUrl: 'api/roles'
+  },
+  users: {
+    baseUrl: 'api/users'
+  },
+  userDetails: {
+    baseUrl: 'api/users/details',
+    me: 'me'
   }
 };
