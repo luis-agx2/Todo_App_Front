@@ -62,7 +62,13 @@
       <mat-error>{{ getErrorMessage('age') }}</mat-error>
     </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary" class="w-full uppercase mt-auto" style="min-height: 40px">
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      class="w-full uppercase mt-auto md:w-1/5 md:self-end"
+      style="min-height: 40px"
+    >
       <div class="flex items-center gap-3">
         <span style="line-height: 19px">Update</span>
         <mat-spinner [diameter]="15" *ngIf="spinnerStatus | async"></mat-spinner>
