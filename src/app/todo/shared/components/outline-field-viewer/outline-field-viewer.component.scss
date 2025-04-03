@@ -1,0 +1,35 @@
+@import './../../../../../assets/styles/variables.scss';
+
+/* Contenedor general para el campo */
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Etiqueta que simula el label del input */
+label {
+  position: absolute;
+  top: 0%;
+  left: 12px;
+  font-size: 16px;
+  color: #aaaaaa;
+  transform: translateY(-50%);
+  pointer-events: none;
+  background-color: $background-color;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+/* Estilo para el div que simula un input */
+.informative-field {
+  width: 100%;
+  height: 42px;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background-color: transparent;
+  color: $text-color;
+  outline: none;
+  user-select: none;
+}

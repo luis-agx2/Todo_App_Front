@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { TodoComponent } from './todo.component';
 
 const routes: Route[] = [
@@ -12,6 +13,11 @@ const routes: Route[] = [
         path: '',
         title: 'Home',
         component: HomeComponent
+      },
+      {
+        path: 'profile',
+        title: 'Profile',
+        component: ProfileComponent
       },
       {
         path: '**',
